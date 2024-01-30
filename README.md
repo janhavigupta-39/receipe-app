@@ -1,68 +1,27 @@
-# React-Node Recipe App 🍲
+# React + TypeScript + Vite
 
-Welcome to the React-Node Recipe App! This application allows users to view, add, and manage their favorite recipes. It's built using React for the frontend and Node.js with Prisma for the backend.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Getting Started 🚀
+Currently, two official plugins are available:
 
-### Prerequisites:
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-- Node.js and npm installed on your machine.
-- An account on [ElephantSQL](https://www.elephantsql.com/) for the database.
-- A [Spoonacular API key](https://spoonacular.com/food-api) for the recipe API
+## Expanding the ESLint configuration
 
-### Setting Up:
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/chrisblakely01/react-node-recipe-app.git
-   cd react-node-recipe-app
-   ```
+- Configure the top-level `parserOptions` property like this:
 
-2. **Setting up the Backend**:
+```js
+   parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+   },
+```
 
-   - Navigate to the backend directory:
-     ```bash
-     cd backend
-     ```
-
-   - Install the necessary packages:
-     ```bash
-     npm install
-     ```
-
-   - **Spoonacular API**:
-     - Add the api key to the API_KEY variable in the .env file   
-
-   - **ElephantSQL Setup**:
-     - Create a new database instance on ElephantSQL.
-     - Copy the connection string provided by ElephantSQL.
-
-   - **Prisma Setup**:
-     - Replace the `DATABASE_URL` in the `.env` file with your ElephantSQL connection string.
-     - Initialize Prisma and generate the Prisma client:
-       ```bash
-       npx prisma init
-       npx prisma generate
-       ```
-
-   - Start the backend server:
-     ```bash
-     npm start
-     ```
-
-3. **Setting up the Frontend**:
-
-   - Navigate to the frontend directory:
-     ```bash
-     cd frontend
-     ```
-
-   - Install the necessary packages:
-     ```bash
-     npm install
-     ```
-
-   - Start the frontend development server:
-     ```bash
-     npm run dev
-     ```
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
